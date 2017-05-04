@@ -10,7 +10,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 
-
 public class DOMParser {
 
 	public static ArrayList<ArrayList<String>> readXML() {
@@ -24,7 +23,6 @@ public class DOMParser {
 			NodeList nodeList = document.getDocumentElement().getChildNodes();
 
 			ArrayList<ArrayList<String>> equipList = new ArrayList<>();
-//			ArrayList<String> equip = new ArrayList<>();
 
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				ArrayList<String> equip = new ArrayList<>();
@@ -37,12 +35,6 @@ public class DOMParser {
 					equip.add(element.getElementsByTagName("title").item(0).getChildNodes().item(0).getNodeValue());
 					equipList.add(equip);
 				}
-			}
-			for (ArrayList<String> list: equipList){
-				for (String equip2: list){
-					System.out.println(equip2);
-				}
-				System.out.println("next level");
 			}
 
 			return equipList;
