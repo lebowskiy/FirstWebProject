@@ -37,6 +37,7 @@ public class MainServlet extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
+		System.out.println(request.getParameter("action"));
 		String page = null;
 		if (action != null) {
 			CommandAction currentAction = CommandChooser.chooseAction(action);

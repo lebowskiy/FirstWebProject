@@ -10,6 +10,7 @@
 <body style="background-image: url('sport-fon.png');">
 	<h2>Welcome, admin!</h2>
 	<br>
+	<!-- 
 	<table border="1" align="left" bgcolor="white" title="Clients and rented equip">
 		<tr>
 			<th>Client name</th>
@@ -26,6 +27,6 @@
 
 		</c:forEach>
 	</table>
-
+	-->
 </body>
 </html>
