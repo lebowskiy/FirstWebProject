@@ -5,7 +5,7 @@ import java.util.List;
 
 import by.htp.sporteq.entity.Equipment;
 
-public class EquiServiceImpl implements EquipService{
+public class EquipServiceImpl implements EquipService{
 
 	@Override
 	public List<Equipment> list() {

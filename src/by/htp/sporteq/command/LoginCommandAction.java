@@ -1,16 +1,17 @@
 package by.htp.sporteq.command;
 
-//import java.util.ArrayList;s
-import java.util.List;
 
+import java.util.List;
+//import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import by.htp.sporteq.entity.Equipment;
 import by.htp.sporteq.entity.User;
 //import by.htp.sporteq.logic.io.MyReader;
 //import by.htp.sporteq.logic.parser.DOMParser;
-import by.htp.sporteq.service.EquiServiceImpl;
+import by.htp.sporteq.service.EquipServiceImpl;
 import by.htp.sporteq.service.EquipService;
 import by.htp.sporteq.service.NoSuchUserException;
 import by.htp.sporteq.service.UserService;
@@ -25,7 +26,7 @@ public class LoginCommandAction implements CommandAction {
 
 	public LoginCommandAction() {
 		this.userservice = new UserServiceImpl();
-		this.equipService = new EquiServiceImpl();
+		this.equipService = new EquipServiceImpl();
 	}
 
 	@Override
@@ -33,10 +34,13 @@ public class LoginCommandAction implements CommandAction {
 		String login = request.getParameter(REQUEST_PARAM_LOGIN);
 		String pass = request.getParameter(REQUEST_PARAM_PASSWORD);
 		String page = PAGE_DEFAULT;
+		HttpSession session = request.getSession();
 
+		
 		User user;
 		try {
 			user = userservice.authorize(login, pass);
+			session.setAttribute("user", user);
 			if (!user.isRole()) {
 				page = PAGE_USER_MAIN;
 				// List<ArrayList<String>> equip = (List<ArrayList<String>>)

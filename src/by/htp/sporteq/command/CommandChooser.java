@@ -10,10 +10,17 @@ public class CommandChooser {
 		case ACTION_MAKE_ORDER:
 			System.out.println("Create order action");
 			return new OrderCreateAction();
-		case ACTION_ORDER:
-			System.out.println("makeOrder action" + action);
+		case ACTION_EXACT_ORDER:
+			System.out.println("Exact order action" + action);
 			return new MakeOrderAction();
+		case ACTION_ADD_ITEMS:
+			System.out.println("Add items to a cart action" + action);
+			return new AddItemsAction();
+		case ACTION_OPEN_USER_ACCOUNT:
+			System.out.println("Open user account" + action);
+			return new UserAccountAction();
 		}
+		
 		//STUB !!!
 		return null;
 	}

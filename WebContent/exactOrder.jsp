@@ -6,8 +6,9 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html>
 <head>
-<link rel='stylesheet' href='resources/bootstrap/bootstrap.css' type='text/css' media='all'>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<link rel='stylesheet' href='resources/bootstrap/bootstrap.css'
+	type='text/css' media='all'>
+<script	src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src='resources/bootstrap/bootstrap.js'></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <style>
@@ -17,24 +18,17 @@
   src: url('resources/bootstrap/glyphicons-halflings-regular.eot');
   src: url('resources/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('resources/bootstrap/glyphicons-halflings-regular.woff2') format('woff2'), url('resources/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('resources/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('resources/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
 .container {
       padding: 80px 120px;
   }
-  .person {
-      border: 10px solid transparent;
-      margin-bottom: 25px;
-      width: 80%;
-      height: 80%;
-      opacity: 0.7;
-  }
-  .person:hover {
-      border-color: #f1f1f1;
-  }
+  
 </style>
-<title>User page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -70,59 +64,65 @@
   </div>
 </nav>
 
-	<div class="container text-center">
-  <h3>THE RENT STATION</h3>
-  <p><em>We love sport!</em></p>
-  <br>
-  <div class="row">
-    <div class="col-sm-4">
-    <form action="MainServlet" method="get">
-    <input type="hidden" name="action" value="exact_order"/>
-    <input type="hidden" name="bike" value="bike"/>
-    <input type="image" src="resources/different/bike3.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
-    </form>
-      <br>
-      <p><strong>Bikes</strong></p>
-    </div>
-    <div class="col-sm-4">
-    <img src="resources/different/longboard3.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
-      <br>
-      <p><strong>Boards</strong></p>
-    </div>
-    <div class="col-sm-4">
-      <img src="resources/different/rollers3.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
-      <br>
-      <p><strong>Roller blades</strong></p>
-    </div>
-  </div>
-    <div class="row">
-    <div class="col-sm-4">
-      <img src="resources/different/glasses.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
-      <br>
-      <p><strong>Glasses</strong></p>
-    </div>
-    <div class="col-sm-4">
-    <img src="resources/different/gloves.jpg" class="img-circle person" alt="Random Name" width="200" height="200">
-      <br>
-      <p><strong>Gloves</strong></p>
-    </div>
-    <div class="col-sm-4">
-      <img src="resources/different/helmet4.png" class="img-circle person" alt="Random Name" width="200" height="200">
-      <br>
-      <p><strong>Helmets</strong></p>
-    </div>
-  </div>
-  <div class="row">
-  	<form action="MainServlet" method="get">
-	<input type="hidden" name="action" value="create_order"/>
+
+	<form action="MainServlet" method="POST">
+	<div class="container">
+	<ul class="list-group">
+		<c:forEach items="${map}" var="entry">
+				
+				<li class="list-group-item">
+				<h4 class="list-group-item-heading"><b><c:out value="${entry.key.name}" /></b></h4>
+				<p class="list-group-item-text">
+      			<c:forEach items="${entry.value}" var="entries">
+				
+				<c:out value="${entries.key}" />:
+				<c:out value="${entries.value}" />
+			
+				</c:forEach>
+				</p>
+				<div class="checkbox">
+  				<label><input type="checkbox" name="items" value="${entry.key.name}">I want this!</label>
+				</div>
+				</li>
+			
+		</c:forEach>
+
+	</ul>
+	
+	<div class="row">
+  	
+	<input type="hidden" name="action" value="add_items"/>
 	<div class="col-sm-10 col-sm-offset-1">
-	<button type="submit" class="btn btn-default btn-lg btn-block" name="action" value="create_order">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Make an order!	
+	<button type="submit" class="btn btn-default btn-lg btn-block" name="action" value="add_items">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Continue to a cart!	
         </button>
 	</div>
-	</form>
+	
 	</div>
-</div>
+	
+	</div>
+	</form>
+
+	<table class="table table-hover table-condensed">
+		<tr>
+			<th>Equipment title</th>
+			<c:forEach items="${map}" var="entry">
+				<c:forEach items="${entry.value}" var="entries">
+					<th><c:out value="${entries.key}" /></th>
+				</c:forEach>
+			</c:forEach>
+		</tr>
+		<c:forEach items="${map}" var="entry">
+
+			<tr>
+				<td><c:out value="${entry.key.name}" /></td>
+				<c:forEach items="${entry.value}" var="entries">
+					<td><c:out value="${entries.value}" /></td>
+
+				</c:forEach>
+			</tr>
+		</c:forEach>
+	</table>
 
 </body>
 </html>

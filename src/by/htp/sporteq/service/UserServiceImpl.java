@@ -9,6 +9,7 @@ public class UserServiceImpl  implements UserService{
 		User user;
 		if("user".equals(login) && "user".equals(pass)) {
 			user = new User();
+			user.setLogin(login);
 			user.setRole(false);
 		} else if ("admin".equals(login) && "admin".equals(pass)){
 			user = new User();

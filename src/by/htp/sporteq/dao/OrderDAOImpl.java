@@ -3,7 +3,7 @@ package by.htp.sporteq.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,7 +22,7 @@ public class OrderDAOImpl implements OrderDAO{
 		String dbPass = rb.getString("db.pass");
 		String driverName = rb.getString("db.driver.name");
 		
-		User user = null;
+//		User user = null;
 
 		try {
 			Class.forName(driverName);
